@@ -258,28 +258,56 @@
                             <i class="fas fa-bread-slice text-2xl text-green-500"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold text-xl">Sourdough Bread</h3>
-                            <p class="text-sm text-gray-500">My pandemic baking project turned obsession</p>
+                            <h3 class="font-bold text-xl">Red BBQ Pork</h3>
+                            <p class="text-sm text-gray-500">My family's inherited obsession</p>
                         </div>
                     </div>
                     <div class="mb-4">
                         <h4 class="font-semibold text-gray-700 mb-2">Key Ingredients:</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm ingredient-bubble">Starter</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm ingredient-bubble">Bread Flour</span>
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm ingredient-bubble">Water</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm ingredient-bubble">Salt</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm ingredient-bubble">Pork</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm ingredient-bubble">Baking Soda</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm ingredient-bubble">Chicken Stock</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm ingredient-bubble">Thai Red BBQ Pork Seasoning</span>
                         </div>
                     </div>
                     <div class="h-40 bg-gradient-to-r from-green-100 to-green-200 rounded-xl mb-4 relative overflow-hidden">
                         <!-- Placeholder for your image -->
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-camera text-2xl text-gray-400"></i>
+                            <img src="images/PXL_20250430_054602946.PORTRAIT.jpg" alt="Red BBQ Pork" class="w-1/3 h-full object-cover">
+                            <img src="images/PXL_20250430_054556986.PORTRAIT.jpg" alt="Red BBQ Pork" class="w-1/3 h-full object-cover">
+                            <img src="images/PXL_20250325_062332391.PORTRAIT.ORIGINAL.jpg" alt="Freshly Cut Red BBQ Pork" class="w-1/3 h-full object-cover">                            
                         </div>
                     </div>
-                    <button class="w-full py-2 bg-green-400 hover:bg-green-500 text-white rounded-lg transition duration-300 flex items-center justify-center">
+                    <button class="w-full py-2 bg-green-400 hover:bg-green-500 text-white rounded-lg transition duration-300 flex items-center justify-center" onclick="openModal2()">
                         <i class="fas fa-book-open mr-2"></i> View Recipe
                     </button>
+                    <!-- Modal -->
+                    <div id="recipeModal2" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                        <div class="bg-white rounded-lg shadow-lg w-11/12 md:w-1/2 p-6 relative">
+                            <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700" onclick="closeModal2()">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                            <h3 class="text-2xl font-bold mb-4">Red BBQ Pork Recipe</h3>
+                            <p class="text-gray-700 mb-4">This is my recipe for a seriously delicious meal. Here's how you can make it:</p>
+                            <ul class="list-disc list-inside text-gray-700 mb-4">
+                                <li>Cut pork into long strips and marinate overnight with chicken stock, baking soda, and Red BBQ Seasoning.</li>
+                                <li>Air-fry for 30 minutes at 120 degrees, occasionally turning it over.</li>
+                                <li>Air-fry again at 180 degrees to develop a nice, sweet, crispy crust, let rest for 5 minutes, then enjoy!</li>
+                            </ul>
+                            <button class="w-full py-2 bg-red-400 hover:bg-red-500 text-white rounded-lg transition duration-300" onclick="closeModal2()">Close</button>
+                        </div>
+                    </div>
+
+                    <script>
+                        function openModal2() {
+                            document.getElementById('recipeModal2').classList.remove('hidden');
+                        }
+
+                        function closeModal2() {
+                            document.getElementById('recipeModal2').classList.add('hidden');
+                        }
+                    </script>
                 </div>
             </div>
         </section>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Flavorful Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Comic+Neue:wght@700&display=swap');
+        
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #292F36;
+            --light: #F7FFF7;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Comic Neue', cursive;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .recipe-card:hover {
+            transform: rotate(-2deg) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .ingredient-bubble {
+            transition: all 0.3s ease;
+        }
+        
+        .ingredient-bubble:hover {
+            transform: translateY(-5px) rotate(5deg);
+        }
+        
+        .spice-path {
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 C 20 20, 40 0, 60 10 C 80 20, 100 0, 100 10 L 100 20 L 0 20 Z' fill='%23FF6B6B' /%3E%3C/svg%3E") repeat-x;
+            background-size: 100px 100px;
+            bottom: -50px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Floating Spices Decoration -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-1/4 left-10 w-8 h-8 bg-yellow-300 rounded-full opacity-20 floating" style="animation-delay: 0.5s;"></div>
+        <div class="absolute top-1/3 right-20 w-10 h-10 bg-red-400 rounded-full opacity-20 floating" style="animation-delay: 1s;"></div>
+        <div class="absolute top-2/3 left-1/4 w-12 h-12 bg-green-400 rounded-full opacity-20 floating" style="animation-delay: 1.5s;"></div>
+        <div class="absolute bottom-1/4 right-1/3 w-6 h-6 bg-purple-400 rounded-full opacity-20 floating" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative bg-gradient-to-r from-red-400 via-yellow-400 to-pink-400 py-12 px-6 text-center overflow-hidden">
+        <div class="spice-path"></div>
+        <h1 class="title-font text-5xl md:text-6xl font-bold text-white mb-4 pulse">My Flavorful Journey</h1>
+        <p class="text-xl text-white opacity-90 max-w-2xl mx-auto">A delicious adventure through my kitchen experiments, successes, and happy accidents!</p>
+        
+        <div class="absolute -bottom-10 left-1/2 transform -translate-x-1/2">
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
+                <i class="fas fa-utensils text-3xl text-red-400"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 py-12">
+        <!-- About Section -->
+        <section class="mb-20">
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 transform rotate-1 hover:rotate-0 transition duration-500">
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-red-500 mb-6">My Cooking Story</h2>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-lg mb-4">It all started when I burned my first grilled cheese sandwich at age 12. Since then, I've been on a mission to conquer the kitchen, one recipe at a time!</p>
+                        <p class="text-lg mb-6">From disastrous cakes to restaurant-worthy pasta dishes, every mistake has been a lesson and every success a celebration.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full">#PastaLover</span>
+                            <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full">#BakingQueen</span>
+                            <span class="px-4 py-2 bg-red-100 text-red-800 rounded-full">#SpiceEnthusiast</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="w-full h-64 md:h-80 bg-gradient-to-br from-yellow-200 to-red-200 rounded-2xl overflow-hidden relative">
+                            <!-- Placeholder for your image -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-camera text-4xl text-gray-400"></i>
+                                <p class="ml-2 text-gray-500">Your cooking photo here</p>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 bg-white p-3 rounded-full shadow-lg">
+                            <i class="fas fa-heart text-2xl text-red-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Milestones Gallery -->
+        <section class="mb-20">
+            <h2 class="title-font text-3xl md:text-4xl font-bold text-center text-blue-500 mb-12">Culinary Milestones</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg transition duration-300 gallery-item">
+                    <div class="h-48 bg-gradient-to-r from-purple-300 to-blue-300 relative">
+                        <!-- Placeholder for your image -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-image text-3xl text-white opacity-70"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-trophy text-white text-sm"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">First Perfect Risotto</h3>
+                        </div>
+                        <p class="text-gray-600">After 5 attempts, I finally achieved the perfect creamy texture without turning it into mush!</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg transition duration-300 gallery-item">
+                    <div class="h-48 bg-gradient-to-r from-green-300 to-teal-300 relative">
+                        <!-- Placeholder for your image -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-image text-3xl text-white opacity-70"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-fire text-white text-sm"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Homemade Chili Mastery</h3>
+                        </div>
+                        <p class="text-gray-600">Developed my signature chili recipe with just the right amount of heat and smokiness.</p>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg transition duration-300 gallery-item">
+                    <div class="h-48 bg-gradient-to-r from-pink-300 to-red-300 relative">
+                        <!-- Placeholder for your image -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-image text-3xl text-white opacity-70"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <div class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-birthday-cake text-white text-sm"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">3-Layer Birthday Cake</h3>
+                        </div>
+                        <p class="text-gray-600">Baked and decorated my first layered cake for a friend's birthday - it actually tasted good!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recipe Highlights -->
+        <section class="mb-20">
+            <h2 class="title-font text-3xl md:text-4xl font-bold text-center text-purple-500 mb-12">Recipe Highlights</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Recipe Card 1 -->
+                <div class="bg-white rounded-3xl shadow-xl p-6 recipe-card transition duration-300 transform hover:shadow-2xl">
+                    <div class="flex items-start mb-4">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-pizza-slice text-2xl text-yellow-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl">Homemade Pizza Dough</h3>
+                            <p class="text-sm text-gray-500">My go-to recipe for perfect crispy crust</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-700 mb-2">Key Ingredients:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm ingredient-bubble">00 Flour</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm ingredient-bubble">Yeast</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm ingredient-bubble">Olive Oil</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm ingredient-bubble">Sea Salt</span>
+                        </div>
+                    </div>
+                    <div class="h-40 bg-gradient-to-r from-yellow-100 to-yellow-200 rounded-xl mb-4 relative overflow-hidden">
+                        <!-- Placeholder for your image -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-camera text-2xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    <button class="w-full py-2 bg-red-400 hover:bg-red-500 text-white rounded-lg transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-book-open mr-2"></i> View Recipe
+                    </button>
+                </div>
+                
+                <!-- Recipe Card 2 -->
+                <div class="bg-white rounded-3xl shadow-xl p-6 recipe-card transition duration-300 transform hover:shadow-2xl">
+                    <div class="flex items-start mb-4">
+                        <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-bread-slice text-2xl text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl">Sourdough Bread</h3>
+                            <p class="text-sm text-gray-500">My pandemic baking project turned obsession</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-700 mb-2">Key Ingredients:</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm ingredient-bubble">Starter</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm ingredient-bubble">Bread Flour</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm ingredient-bubble">Water</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm ingredient-bubble">Salt</span>
+                        </div>
+                    </div>
+                    <div class="h-40 bg-gradient-to-r from-green-100 to-green-200 rounded-xl mb-4 relative overflow-hidden">
+                        <!-- Placeholder for your image -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-camera text-2xl text-gray-400"></i>
+                        </div>
+                    </div>
+                    <button class="w-full py-2 bg-green-400 hover:bg-green-500 text-white rounded-lg transition duration-300 flex items-center justify-center">
+                        <i class="fas fa-book-open mr-2"></i> View Recipe
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cooking Collage -->
+        <section class="mb-20">
+            <h2 class="title-font text-3xl md:text-4xl font-bold text-center text-pink-500 mb-12">My Kitchen Adventures</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Collage Item 1 -->
+                <div class="h-40 md:h-60 bg-gradient-to-br from-red-200 to-pink-200 rounded-xl overflow-hidden relative">
+                    <!-- Placeholder for your image -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-plus text-2xl text-gray-500"></i>
+                    </div>
+                </div>
+                
+                <!-- Collage Item 2 -->
+                <div class="h-40 md:h-60 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-xl overflow-hidden relative row-span-2">
+                    <!-- Placeholder for your image -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-plus text-2xl text-gray-500"></i>
+                    </div>
+                </div>
+                
+                <!-- Collage Item 3 -->
+                <div class="h-40 md:h-60 bg-gradient-to-br from-green-200 to-teal-200 rounded-xl overflow-hidden relative">
+                    <!-- Placeholder for your image -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-plus text-2xl text-gray-500"></i>
+                    </div>
+                </div>
+                
+                <!-- Collage Item 4 -->
+                <div class="h-40 md:h-60 bg-gradient-to-br from-blue-200 to-purple-200 rounded-xl overflow-hidden relative">
+                    <!-- Placeholder for your image -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-plus text-2xl text-gray-500"></i>
+                    </div>
+                </div>
+                
+                <!-- Collage Item 5 -->
+                <div class="h-40 md:h-60 bg-gradient-to-br from-purple-200 to-pink-200 rounded-xl overflow-hidden relative col-span-2">
+                    <!-- Placeholder for your image -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-plus text-2xl text-gray-500"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="bg-gradient-to-r from-indigo-100 to-purple-100 rounded-3xl p-8 md:p-12 mb-20">
+            <h2 class="title-font text-3xl md:text-4xl font-bold text-center text-indigo-600 mb-8">Kitchen Wisdom</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Lesson 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-temperature-high text-red-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-center mb-2">Patience with Heat</h3>
+                    <p class="text-gray-600 text-center">Learning to control temperature was a game-changer. Low and slow often wins the race!</p>
+                </div>
+                
+                <!-- Lesson 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-balance-scale text-yellow-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-center mb-2">The Power of Balance</h3>
+                    <p class="text-gray-600 text-center">Sweet needs salty, fat needs acid. Understanding balance transformed my dishes.</p>
+                </div>
+                
+                <!-- Lesson 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md transform hover:scale-105 transition duration-300">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-heart text-green-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-center mb-2">Cooking with Love</h3>
+                    <p class="text-gray-600 text-center">The secret ingredient is always joy. Food tastes better when made with happiness.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="title-font text-3xl font-bold mb-6">Ready for More Delicious Adventures?</h2>
+            <p class="text-lg mb-8 opacity-90">Follow my cooking journey on social media for more recipes, fails, and triumphs!</p>
+            
+            <div class="flex justify-center space-x-6 mb-10">
+                <a href="#" class="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition duration-300">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition duration-300">
+                    <i class="fab fa-tiktok text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 bg-white bg-opacity-10 rounded-full flex items-center justify-center hover:bg-opacity-20 transition duration-300">
+                    <i class="fab fa-pinterest text-xl"></i>
+                </a>
+            </div>
+            
+            <p class="text-sm opacity-70">Made with <i class="fas fa-heart text-red-400"></i> and probably flour on my face</p>
+        </div>
+        
+        <!-- Floating food icons -->
+        <div class="absolute bottom-0 left-0 w-full h-20 overflow-hidden">
+            <div class="absolute -left-10 bottom-0 text-4xl text-yellow-300 opacity-30 floating" style="animation-delay: 0.2s;">
+                <i class="fas fa-cheese"></i>
+            </div>
+            <div class="absolute left-1/4 bottom-0 text-3xl text-red-300 opacity-30 floating" style="animation-delay: 0.5s;">
+                <i class="fas fa-pepper-hot"></i>
+            </div>
+            <div class="absolute left-1/2 bottom-0 text-5xl text-green-300 opacity-30 floating" style="animation-delay: 0.8s;">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div class="absolute right-1/4 bottom-0 text-4xl text-blue-300 opacity-30 floating" style="animation-delay: 1.1s;">
+                <i class="fas fa-fish"></i>
+            </div>
+            <div class="absolute -right-10 bottom-0 text-3xl text-purple-300 opacity-30 floating" style="animation-delay: 1.4s;">
+                <i class="fas fa-ice-cream"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger for scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const recipeCards = document.querySelectorAll('.recipe-card');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            // Add click effect to recipe cards
+            recipeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.add('animate-pulse');
+                    setTimeout(() => {
+                        this.classList.remove('animate-pulse');
+                    }, 500);
+                });
+            });
+            
+            // Add hover effect to gallery items
+            galleryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.fa-trophy, .fa-fire, .fa-birthday-cake');
+                    if (icon) {
+                        icon.classList.add('animate-bounce');
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.fa-trophy, .fa-fire, .fa-birthday-cake');
+                    if (icon) {
+                        icon.classList.remove('animate-bounce');
+                    }
+                });
+            });
+            
+            // Animate ingredients on page load
+            const ingredients = document.querySelectorAll('.ingredient-bubble');
+            ingredients.forEach((ing, index) => {
+                setTimeout(() => {
+                    ing.classList.add('animate-bounce');
+                    setTimeout(() => {
+                        ing.classList.remove('animate-bounce');
+                    }, 1000);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
